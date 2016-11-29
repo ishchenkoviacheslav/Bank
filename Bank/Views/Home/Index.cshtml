@@ -1,31 +1,72 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model Bank.Models.Account
+    @using Bank.Models;
+<h2>Main page</h2>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div>
+    @if (Model != null)
+    {
+        <table>
+            <tr>
+                <td><p>@Model.Id</p></td>
+                <td><p>@Model.Name</p></td>
+                <td><p>@Model.Surname</p></td>
+                <td><p>@Model.Money</p></td>
+                <td><p>@Model.login</p></td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <p>добавление нового клиента банка связанного с данным пользователем</p>
+        <h3>Форма регистрации нового клиента</h3>
+        <p>@ViewBag.HttpUserName</p>
+        <form method="post" action="">
+            <input type="hidden" value="@ViewBag.Login" name="login" />
+            <table>
+                <tr>
+                    <td><p>Введите свое имя </p></td>
+                    <td><input type="text" name="Name" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите свою фамилию:</p></td>
+                    <td><input type="text" name="Surname" /></td>
+                </tr>
+                <tr>
+                    <td><p>Введите сумму денег :</p></td>
+                    <td><input type="text" name="Money" /></td>
+                </tr>
+                
+                <tr><td><input type="submit" value="Зарегестрировать" /> </td><td></td></tr>
+            </table>
+        </form>
+        //создание нового клиента банка связанного с данным пользователем
+    }
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+@*@{
+    ViewBag.Title = "Home Page";
+}
+@model List<Bank.Models.Account>
+@using Bank.Models;
+<h2>Main page</h2>
+
+<div>
+    <h3>все пользователи</h3>
+    <table>
+
+        @foreach (Account acc in Model)
+            {
+            <tr>
+                <td><p>@acc.Id</p></td>
+                <td><p>@acc.Money</p></td>
+                <td><p>@acc.Name</p></td>
+                <td><p>@acc.Surname</p></td>
+            </tr>
+        }
+    </table>
+</div>*@
