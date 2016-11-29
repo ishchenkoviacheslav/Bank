@@ -2,32 +2,43 @@
     ViewBag.Title = "Home Page";
 }
 @model Bank.Models.Account
-    @using Bank.Models;
+@using Bank.Models;
 <h2>Main page</h2>
 
 <div>
     @if (Model != null)
     {
+
+
         <table>
             <tr>
-                <td>Идентификатор клиента:   </td><td>@Model.Id</td>
+                <td>Идентификатор клиента:   </td>
+                <td>@Model.Id</td>
             </tr>
             <tr>
-                <td>Имя:    </td><td>@Model.Name</td>
+                <td>Имя:    </td>
+                <td>@Model.Name</td>
             </tr>
             <tr>
-                <td>Фамилия:    </td><td>@Model.Surname</td>
+                <td>Фамилия:    </td>
+                <td>@Model.Surname</td>
             </tr>
             <tr>
-                <td>Сумма:    </td><td>@Model.Money</td>
+                <td>Сумма:    </td>
+                <td>@Model.Money</td>
             </tr>
             <tr>
-                <td>Логин пользователя:   </td><td>@Model.login</td>
+                <td>Логин пользователя:   </td>
+                <td>@Model.login</td>
             </tr>
-            <tr>
-                @Html.BeginForm("")
-            </tr>
+            <tr></tr>
         </table>
+       @*@Html.ActionLink("Снять наличные","GetCash","AccountFunctional");*@
+    using(Html.BeginForm("GetCash", "AccountFunctional"))
+    {
+        ViewBag.logID = Model.login;
+            <input type="submit" value="Снять наличные" />
+        }
     }
     else
     {
@@ -49,7 +60,8 @@
                     <td><p>Введите сумму денег :</p></td>
                     <td><input type="text" name="Money" /></td>
                 </tr>
-                
+
+
                 <tr><td><input type="submit" value="Зарегестрировать" /> </td><td></td></tr>
             </table>
         </form>
@@ -60,24 +72,24 @@
 
 
 @*@{
-    ViewBag.Title = "Home Page";
-}
-@model List<Bank.Models.Account>
-@using Bank.Models;
-<h2>Main page</h2>
+        ViewBag.Title = "Home Page";
+    }
+    @model List<Bank.Models.Account>
+    @using Bank.Models;
+    <h2>Main page</h2>
 
-<div>
-    <h3>все пользователи</h3>
-    <table>
+    <div>
+        <h3>все пользователи</h3>
+        <table>
 
-        @foreach (Account acc in Model)
-            {
-            <tr>
-                <td><p>@acc.Id</p></td>
-                <td><p>@acc.Money</p></td>
-                <td><p>@acc.Name</p></td>
-                <td><p>@acc.Surname</p></td>
-            </tr>
-        }
-    </table>
-</div>*@
+            @foreach (Account acc in Model)
+                {
+                <tr>
+                    <td><p>@acc.Id</p></td>
+                    <td><p>@acc.Money</p></td>
+                    <td><p>@acc.Name</p></td>
+                    <td><p>@acc.Surname</p></td>
+                </tr>
+            }
+        </table>
+    </div>*@
