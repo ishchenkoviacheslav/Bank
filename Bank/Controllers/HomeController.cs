@@ -9,6 +9,13 @@ namespace Bank.Controllers
     public class HomeController : Controller
     {
         AccountContext accountConext = new AccountContext();
+        public AccountContext context
+        {
+            get
+            {
+                return accountConext;
+            }
+        }
 
         [Authorize]
         [HttpGet]
@@ -67,7 +74,7 @@ namespace Bank.Controllers
 
         public ActionResult About()
         {
-            //ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "My Bank application alfa version";
 
             return View();
         }

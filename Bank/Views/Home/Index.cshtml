@@ -10,11 +10,22 @@
     {
         <table>
             <tr>
-                <td><p>@Model.Id</p></td>
-                <td><p>@Model.Name</p></td>
-                <td><p>@Model.Surname</p></td>
-                <td><p>@Model.Money</p></td>
-                <td><p>@Model.login</p></td>
+                <td>Идентификатор клиента:   </td><td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td>Имя:    </td><td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td>Фамилия:    </td><td>@Model.Surname</td>
+            </tr>
+            <tr>
+                <td>Сумма:    </td><td>@Model.Money</td>
+            </tr>
+            <tr>
+                <td>Логин пользователя:   </td><td>@Model.login</td>
+            </tr>
+            <tr>
+                @Html.BeginForm("")
             </tr>
         </table>
     }

@@ -6,23 +6,23 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bank;
 using Bank.Controllers;
-
+using System.Data.Entity;
+using Bank.Models;
 namespace Bank.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
+        
         [TestMethod]
         public void Index()
         {
-            // Arrange
+            //удаётся ли считать клиентов банка из БД
             HomeController controller = new HomeController();
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+           List<Account> AccList = controller.context.Accounts.ToList();
 
-            // Assert
-            Assert.IsNotNull(result);
+            Assert.IsNotNull(AccList);
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace Bank.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("My Bank application alfa version", result.ViewBag.Message);
         }
 
         [TestMethod]
