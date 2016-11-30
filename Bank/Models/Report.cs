@@ -7,10 +7,22 @@ namespace Bank.Models
 {
     public class Report
     {
-        public Guid ReportId { get; set; }
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public TypeOfOperation OperationType { get; set; }
-        public Guid SenderId { get; set; }
-        public Guid Receiver { get; set; }
+        public string SenderId { get; set; }
+        public string ReceiverId { get; set; }
+        public Report()
+        {
+
+        }
+        public Report(DateTime date, TypeOfOperation type, string sender, string receiver)
+        {
+            Date = date;
+            OperationType = type;
+            SenderId = sender;
+            ReceiverId = receiver;
+        }
+
     }
 }

@@ -28,6 +28,9 @@ namespace Bank.Models
                     SumOfInterest = (sum / 100) * 20;
                     break;
             }
+        }
+        public Deposit()
+        {
 
         }
 

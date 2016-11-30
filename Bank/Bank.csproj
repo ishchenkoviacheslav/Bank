@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountFunctionalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,6 +281,7 @@
     <Content Include="Views\AccountFunctional\Transaction.cshtml" />
     <Content Include="Views\AccountFunctional\Deposit.cshtml" />
     <Content Include="Views\AccountFunctional\DepositReport.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,7 +36,6 @@
             </tr>
             <tr></tr>
         </table>
-        @*@Html.ActionLink("Снять наличные","GetCash","AccountFunctional");*@
     using (Html.BeginForm("GetCash", "AccountFunctional", FormMethod.Get))
     {
         <input type="submit" value="Снять наличные" />
@@ -53,8 +52,13 @@
     {
         <input type="submit" value="Отчет по депозитам" />
     }
+
+    using (Html.BeginForm("Index", "Report", FormMethod.Get))
+    {
+        <input type="submit" value="Отчет о денежных движениях" />
     }
 
+    }
     else
     {
         <p>добавление нового клиента банка связанного с данным пользователем</p>
@@ -80,31 +84,6 @@
                 <tr><td><input type="submit" value="Зарегестрировать" /> </td><td></td></tr>
             </table>
         </form>
-        //создание нового клиента банка связанного с данным пользователем
     }
 
 </div>
-
-
-@*@{
-        ViewBag.Title = "Home Page";
-    }
-    @model List<Bank.Models.Account>
-    @using Bank.Models;
-    <h2>Main page</h2>
-
-    <div>
-        <h3>все пользователи</h3>
-        <table>
-
-            @foreach (Account acc in Model)
-                {
-                <tr>
-                    <td><p>@acc.Id</p></td>
-                    <td><p>@acc.Money</p></td>
-                    <td><p>@acc.Name</p></td>
-                    <td><p>@acc.Surname</p></td>
-                </tr>
-            }
-        </table>
-    </div>*@

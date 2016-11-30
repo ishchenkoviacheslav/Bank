@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model System.Collections.Generic.List<Bank.Models.Report>
+<h2>Отчёт по движениям средств</h2>
+@*<form method="post" action="">*@
+    
+        @foreach (Bank.Models.Report rep in Model)
+        {
+            <ul>
+                <li>@rep.Date </li>
+                <li>Тип операции : @rep.OperationType.ToString()</li>
+                <li>Отправитель(источник/владелец) : @rep.SenderId </li>
+                <li>Получатель(только при переводе) : @rep.ReceiverId </li>
+            </ul>
+        }
+        
+
+      @*<input type="submit" value="Зарегестрировать" />*@
+  
+@*</form>*@
+

@@ -54,6 +54,7 @@ namespace Bank.Controllers
                         if (item.Money >= ClienSum)
                         {
                             item.Money = item.Money - ClienSum;
+                            accountContext.Reports.Add(new Report(DateTime.Now, TypeOfOperation.Taking, item.login, "None"));
                             accountContext.SaveChanges();
                             ViewBag.OperMsg = "операция прошла успешно";
                             //Response.Redirect("/Home/Index");
@@ -136,6 +137,7 @@ namespace Bank.Controllers
                     {
                         item.Money = item.Money - TransSum;
                         target.Money = target.Money + TransSum;
+                        accountContext.Reports.Add(new Report(DateTime.Now, TypeOfOperation.Transfer, item.login, target.login));
                         accountContext.SaveChanges();
                         ViewBag.OperMsg = "операция прошла успешно";
                         return View("Index");
@@ -185,6 +187,12 @@ namespace Bank.Controllers
                     }
                     else
                     {
+                        //проверка на добавление депозита повторно
+                        if(accountContext.Deposits.Where(a=>a.DepositId==item.Id).ToList()!=null)
+                        {
+                            ViewBag.OperMsg = "у вас есть действующий депозит";
+                            return View("Index");
+                        }
                         item.Money = item.Money - DepSum;
                         accountContext.Deposits.Add(new Models.Deposit(item.Id, DepSum, month));
                         accountContext.SaveChanges();
