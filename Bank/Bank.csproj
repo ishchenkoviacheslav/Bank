@@ -277,6 +277,7 @@
     <Content Include="Views\Home\BackToIndex.cshtml" />
     <Content Include="Views\AccountFunctional\GetCash.cshtml" />
     <Content Include="Views\AccountFunctional\Index.cshtml" />
+    <Content Include="Views\AccountFunctional\Transaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

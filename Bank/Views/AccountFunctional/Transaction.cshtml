@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Transaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Перевод денег на другой счёт</h2>
+<form method="post" action="~/AccountFunctional/Transaction">
+    @*<input type="hidden" value="@ViewBag.Login" name="login" />*@
+    <table>
+        <tr>
+            <td>Введите логин счета на который хотите осуществить перевод :</td>
+            <td><input type="text" name="login" /> </td>
+        </tr>
+        <tr>
+            <td>Сумма денег на вашем счету составляет :  @ViewBag.ClientMoney</td>
+        </tr>
+        <tr>
+            <td>Введите сумму для перевода</td>
+            <td><input type="text" name="Sum" /></td>
+        </tr>
+        <tr>
+
+        <tr><td><input type="submit" value="Перевести деньги" /> </td><td></td></tr>
+    </table>
+</form>

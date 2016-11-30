@@ -35,7 +35,7 @@ namespace Bank.Controllers
             List<Account> Acclist = accountContext.Accounts.ToList();
             foreach (Account item in Acclist)
             {
-                if(item.login == HttpContext.User.Identity.Name)
+                if (item.login == HttpContext.User.Identity.Name)
                 {
                     ViewBag.ClientSum = item.Money;
                 }
@@ -56,7 +56,7 @@ namespace Bank.Controllers
                     {
                         float ClienSum = float.Parse(Sum);
                         //достаточна ли сумма денег на счету для снятия
-                    if (item.Money >= ClienSum)
+                        if (item.Money >= ClienSum)
                         {
                             item.Money = item.Money - ClienSum;
                             accountContext.SaveChanges();
@@ -78,15 +78,28 @@ namespace Bank.Controllers
                         ViewBag.OperMsg = "введены некоректные данные суммы";
                         return View("Index");
                     }
-                }               
+                }
             }
             //return "системная ошибка, ненайдет клиент";
             ViewBag.OperMsg = "системная ошибка, ненайдет клиент";
             return View("Index");
         }
-        ActionResult Transaction()
+        public ActionResult Transaction()
         {
+            List<Account> Acclist = accountContext.Accounts.ToList();
+            foreach (Account item in Acclist)
+            {
+                if (item.login == HttpContext.User.Identity.Name)
+                {
+                    ViewBag.ClientMoney = item.Money;
+                }
+            }
             return View();
+        }
+        [HttpPost]
+        public string Transaction(string login, string Sum)
+        {
+            return "транзакция успешно завершена";
         }
     }
 }
