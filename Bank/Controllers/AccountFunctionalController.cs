@@ -11,11 +11,13 @@ namespace Bank.Controllers
         // GET: AccountFunctional
         public ActionResult Index()
         {
+            
             return View();
         }
-        public string GetCash()
+        public ActionResult GetCash()
         {
-            return "Get Cash";
+            ViewBag.id = HttpContext.User.Identity.Name;
+            return View();
         }
     }
 }
