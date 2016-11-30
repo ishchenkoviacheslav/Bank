@@ -1,7 +1,7 @@
 ﻿
 @model string
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,8 +13,22 @@
 </head>
 <body>
     <div> 
-        <p>model</p>
         @ViewBag.id
     </div>
+    <form method="post" action="">
+        @*<input type="hidden" value="@ViewBag.id" name="id" />*@
+        <table>
+            <tr>
+                <td>Доступный баланас на счету : </td>
+                <td>@ViewBag.ClientSum</td>
+            </tr>
+            <tr>
+                <td><p>Введите сумму : </p></td>
+                <td><input type="text" name="Sum" /> </td>
+            </tr>
+            
+            <tr><td><input type="submit" value="Снять деньги" /> </td><td></td></tr>
+        </table>
+    </form>
 </body>
 </html>

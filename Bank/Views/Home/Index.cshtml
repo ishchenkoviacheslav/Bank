@@ -8,7 +8,10 @@
 <div>
     @if (Model != null)
     {
-
+        if(ViewBag.OperMsg != null)
+        {
+            <h3>@ViewBag.OperMsg</h3>
+        }
 
         <table>
             <tr>
@@ -34,10 +37,13 @@
             <tr></tr>
         </table>
        @*@Html.ActionLink("Снять наличные","GetCash","AccountFunctional");*@
-    using(Html.BeginForm("GetCash", "AccountFunctional"))
+    using(Html.BeginForm("GetCash", "AccountFunctional",FormMethod.Get))
     {
-        //ViewBag.logID = Model.login;
             <input type="submit" value="Снять наличные" />
+    }
+    using (Html.BeginForm("Transaction", "AccountFunctional", FormMethod.Get))
+    {
+        <input type="submit" value="перевести деньги" />
         }
     }
     else
