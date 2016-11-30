@@ -23,12 +23,7 @@ namespace Bank.Controllers
 
             return View();
         }
-        //[HttpPost]
-        //public ActionResult Index(string msg)
-        //{
-
-        //    return View();
-        //}
+        
         [HttpGet]
         public ActionResult GetCash()
         {
@@ -97,9 +92,109 @@ namespace Bank.Controllers
             return View();
         }
         [HttpPost]
-        public string Transaction(string login, string Sum)
+        public ActionResult Transaction(string login, string Sum)
         {
-            return "транзакция успешно завершена";
+            List<Account> Acclist = accountContext.Accounts.ToList();
+
+            //найти клиента-цель, для отправки ему денег
+            Account target = null;
+            foreach (Account item in Acclist)
+            {
+                if(item.login == login)
+                {
+                    target = item;
+                }
+            }
+            if (target == null)
+            {
+                ViewBag.OperMsg = "клиент не найден";
+                return View("Index");
+            }
+            float TransSum;
+            //проверить что у нас есть достаточно денег и перевести их клиенту
+            foreach (Account item in Acclist)
+            {
+                //найти нужного клиента
+                if (item.login == HttpContext.User.Identity.Name)
+                {
+                    try
+                    {
+                        TransSum = float.Parse(Sum);
+                    }
+                    catch (Exception)
+                    {
+                        ViewBag.OperMsg = "введены некоректные данные суммы";
+                        return View("Index");
+                    }
+
+                    if(item.Money< TransSum)
+                    {
+                        ViewBag.OperMsg = "недостаточно средств на счету";
+                        return View("Index");
+                    }
+                    else
+                    {
+                        item.Money = item.Money - TransSum;
+                        target.Money = target.Money + TransSum;
+                        accountContext.SaveChanges();
+                        ViewBag.OperMsg = "операция прошла успешно";
+                        return View("Index");
+                    }
+                }
+            }
+            ViewBag.OperMsg = "Список клиентов пуст";
+            return View("Index");
+        }
+
+        public ActionResult Deposit()
+        {
+            List<Account> Acclist = accountContext.Accounts.ToList();
+            foreach (Account item in Acclist)
+            {
+                //узнать сумму денег клиента для отображения на странице
+                if (item.login == HttpContext.User.Identity.Name)
+                {
+                    ViewBag.ClientMoney = item.Money;
+                }
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Deposit(string Sum, int month)
+        {
+            List<Account> Acclist = accountContext.Accounts.ToList();
+            float DepSum;
+            try
+            {
+                DepSum = float.Parse(Sum);
+            }
+            catch (Exception)
+            {
+                ViewBag.OperMsg = "введены некоректные данные суммы";
+                return View("Index");
+            }
+
+            foreach (Account item in Acclist)
+            {
+                if (item.login == HttpContext.User.Identity.Name)
+                {
+                    if (item.Money < DepSum)
+                    {
+                        ViewBag.OperMsg = "недостаточно средств на счету";
+                        return View("Index");
+                    }
+                    else
+                    {
+                        item.Money = item.Money - DepSum;
+                        accountContext.Deposits.Add(new Models.Deposit(DepSum, month));
+                        accountContext.SaveChanges();
+                        ViewBag.OperMsg = "вклад на депозит был осуществлен";
+                        return View("Index");
+                    }
+                }
+            }
+            ViewBag.OperMsg = "список клиентов оказался пуст...";
+            return View("Index");
         }
     }
 }

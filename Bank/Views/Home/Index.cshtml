@@ -8,7 +8,7 @@
 <div>
     @if (Model != null)
     {
-        if(ViewBag.OperMsg != null)
+        if (ViewBag.OperMsg != null)
         {
             <h3>@ViewBag.OperMsg</h3>
         }
@@ -36,16 +36,22 @@
             </tr>
             <tr></tr>
         </table>
-       @*@Html.ActionLink("Снять наличные","GetCash","AccountFunctional");*@
-    using(Html.BeginForm("GetCash", "AccountFunctional",FormMethod.Get))
+        @*@Html.ActionLink("Снять наличные","GetCash","AccountFunctional");*@
+    using (Html.BeginForm("GetCash", "AccountFunctional", FormMethod.Get))
     {
-            <input type="submit" value="Снять наличные" />
+        <input type="submit" value="Снять наличные" />
     }
     using (Html.BeginForm("Transaction", "AccountFunctional", FormMethod.Get))
     {
         <input type="submit" value="перевести деньги" />
-        }
     }
+    using (Html.BeginForm("Deposit", "AccountFunctional", FormMethod.Get))
+    {
+        <input type="submit" value="Положить деньги на депозит" />
+    }
+
+    }
+
     else
     {
         <p>добавление нового клиента банка связанного с данным пользователем</p>

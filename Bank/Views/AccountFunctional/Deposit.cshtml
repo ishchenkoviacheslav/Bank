@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Deposit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deposit</h2>
+
+<form method="post" action="~/AccountFunctional/Deposit">
+    <table>
+        <tr>
+            <td>Сумма денег на вашем счету составляет :  @ViewBag.ClientMoney</td>
+        </tr>
+        <tr>
+            <td>Введите сумму для вклада</td>
+            <td><input type="text" name="Sum" /></td>
+        </tr>
+        <tr>
+            <td>Под 10 % на 3 месяца</td>
+            <td><input id="month" name="month" type="radio" value="3" /></td>
+        </tr>
+        <tr>
+            <td>Под 15% на 6 месяцев</td>
+            <td><input id="month" name="month" type="radio" value="6" /></td>
+        </tr>
+        <tr>
+            <td>Под 20% на 12 месяцев</td>
+            <td><input id="month" name="month" type="radio" value="12" /></td>
+        </tr>
+        <tr><td><input type="submit" value="Положить на депозит"/> </td></tr>
+
+        @*<input id="color" name="color" type="radio" value="red" />
+        <span>красный</span>
+        <br />
+        <input id="color" name="color" type="radio" value="blue" />
+        <span>синий</span>
+        <br />
+        <input checked="checked" id="color" name="color" type="radio" value="green" />
+        <span>зеленый</span>*@
+    </table>
+</form>

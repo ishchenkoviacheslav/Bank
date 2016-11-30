@@ -278,6 +278,7 @@
     <Content Include="Views\AccountFunctional\GetCash.cshtml" />
     <Content Include="Views\AccountFunctional\Index.cshtml" />
     <Content Include="Views\AccountFunctional\Transaction.cshtml" />
+    <Content Include="Views\AccountFunctional\Deposit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
