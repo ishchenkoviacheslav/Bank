@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "DepositReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Bank.Models;
+@model Deposit
+<h2>Отчёт по депозитам</h2>
+<div id="searchresults">
+   
+    <ul>
+        
+
+            <li>Уникальный номер депозита : @model.DepositId</li>
+            <li>Дата окончания : @model.ExpirationDate </li>
+            <li>Сумма вложеных денег : @model.Sum </li>
+            <li>Сумма процентов : @model.SumOfInterest </li>
+       
+    </ul>
+</div>
+

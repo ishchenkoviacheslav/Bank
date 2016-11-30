@@ -279,6 +279,7 @@
     <Content Include="Views\AccountFunctional\Index.cshtml" />
     <Content Include="Views\AccountFunctional\Transaction.cshtml" />
     <Content Include="Views\AccountFunctional\Deposit.cshtml" />
+    <Content Include="Views\AccountFunctional\DepositReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

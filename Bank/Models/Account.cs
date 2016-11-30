@@ -13,7 +13,6 @@ namespace Bank.Models
         public string Surname { get; set; }
         public float Money { get; set; }
         public string login { get; set; }
-        List<Deposit> ListOfDeposits = new List<Deposit>();
         public override string ToString()
         {
             return Id.ToString() + " " + Name.ToString() + " " + Surname + " " + Money.ToString() + " " + login;

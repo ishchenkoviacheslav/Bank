@@ -186,7 +186,7 @@ namespace Bank.Controllers
                     else
                     {
                         item.Money = item.Money - DepSum;
-                        accountContext.Deposits.Add(new Models.Deposit(DepSum, month));
+                        accountContext.Deposits.Add(new Models.Deposit(item.Id, DepSum, month));
                         accountContext.SaveChanges();
                         ViewBag.OperMsg = "вклад на депозит был осуществлен";
                         return View("Index");
@@ -195,6 +195,13 @@ namespace Bank.Controllers
             }
             ViewBag.OperMsg = "список клиентов оказался пуст...";
             return View("Index");
+        }
+        public ActionResult DepositReport()
+        {
+            Account acc = accountContext.Accounts.Where(a => a.login.Contains(HttpContext.User.Identity.Name)).FirstOrDefault();
+            Deposit depos = accountContext.Deposits.Where(a => a.DepositId == acc.Id).FirstOrDefault();
+
+            return View(depos);
         }
     }
 }

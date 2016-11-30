@@ -11,9 +11,9 @@ namespace Bank.Models
         public DateTime ExpirationDate { get; set; }
         public float Sum { get; set; }
         public float SumOfInterest { get; set; }
-        public Deposit(float sum, int month)
+        public Deposit(Guid guid, float sum, int month)
         {
-            DepositId = Guid.NewGuid();
+            DepositId = guid;
             ExpirationDate = DateTime.Now.AddMonths(month);
             Sum = sum;
             switch (month)
